@@ -26,5 +26,5 @@ cyclePlayView2.pageLocation = CCCycleScrollPageViewPositionBottomRight;
 cyclePlayView2.pageDescrips = @[@"大海",@"花",@"长灯",@"阳光下的身影",@"秋树",@"摩天轮"];
 ```
 Demo结果如下：
-![image](https://github.com/xxxx.jpg)
+![image](https://github.com/FannCyii/CCCycleScrollView/blob/master/cccycleScrollView.gif)
 
