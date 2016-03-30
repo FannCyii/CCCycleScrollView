@@ -81,14 +81,12 @@
     _containerView.contentSize = CGSizeMake(3*_containerView.frame.size.width, _containerView.frame.size.height);
     _containerView.contentOffset = CGPointMake(_containerView.frame.size.width, _containerView.frame.origin.y)//显示中间图片
     ;
-    _containerView.backgroundColor = [UIColor redColor];
+    _containerView.backgroundColor = [UIColor grayColor];
     self.leftImageView  = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0  , _containerView.frame.size.width, _containerView.frame.size.height)];
     
     self.middleImageView = [[UIImageView alloc]initWithFrame:CGRectMake(_containerView.frame.size.width, 0  , _containerView.frame.size.width, _containerView.frame.size.height)];
     self.rightImageView = [[UIImageView alloc]initWithFrame:CGRectMake(2*_containerView.frame.size.width, 0, _containerView.frame.size.width, _containerView.frame.size.height)];
 
-    
-    NSLog(@"\n%@\n%@\n%@\n%@\n",self,self.leftImageView,self.middleImageView,self.rightImageView);
     _containerView.delegate = self;
     [_containerView addSubview:_leftImageView];
     [_containerView addSubview:_rightImageView];
@@ -124,8 +122,10 @@
 - (void)cycleImageViewConfig
 {
     if ([_images count] == 0) {
+        NSLog(@"cycleImageViewConfig:images is empty!");
         return;
     }
+    
     _middleImageView.image = (UIImage *)_images[CC_CYCLEINDEX_CALCULATE(_currentNumber,_images.count)];
     _leftImageView.image = (UIImage *)_images[CC_CYCLEINDEX_CALCULATE(_currentNumber - 1,_images.count)];
     _rightImageView.image = (UIImage *)_images[CC_CYCLEINDEX_CALCULATE(_currentNumber + 1,_images.count)];
@@ -146,13 +146,20 @@
 //设置定时器
 - (void)timeSetter
 {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:self.pageChangeTime target:self selector:@selector(timeChanged) userInfo:nil repeats:YES];
+    //将定时器放入当前RUNLOOP中，可能会导致定时器的失效
+//    self.timer = [NSTimer scheduledTimerWithTimeInterval:self.pageChangeTime target:self selector:@selector(timeChanged) userInfo:nil repeats:YES];
     
-//    self.timer = [NSTimer timerWithTimeInterval:self.pageChangeTime target:self selector:@selector(timeChanged) userInfo:nil repeats:YES];
-//    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    //将定时器放入主进程的RunLoop中
+    self.timer = [NSTimer timerWithTimeInterval:self.pageChangeTime target:self selector:@selector(timeChanged) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    
 }
 - (void)timeChanged
 {
+    if (_images.count == 0) {
+        NSLog(@"timeChanged:images is empty!");
+        return;
+    }
     self.currentNumber =  CC_CYCLEINDEX_CALCULATE(_currentNumber+1,_images.count);
     self.pageControl.currentPage = self.currentNumber;
     [self setPageDescripText];
