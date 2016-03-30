@@ -2,6 +2,9 @@ CCCycleScrollView
 
 *iOS Objective-C自定义轮播，无限循环图片播放。*
 
+*简易无限图片轮播器*
+
+*自定义 pageControl和UILabel*
 使用方式：
 
 ```
