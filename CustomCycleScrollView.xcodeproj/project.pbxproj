@@ -142,7 +142,6 @@
 				TargetAttributes = {
 					14D9F7FF1CA40DDD00ABCB10 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = YAEL4C965W;
 					};
 				};
 			};
@@ -303,6 +302,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = CustomCycleScrollView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cqf.com.cn.CustomCycleScrollView;
@@ -314,6 +314,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = CustomCycleScrollView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cqf.com.cn.CustomCycleScrollView;
