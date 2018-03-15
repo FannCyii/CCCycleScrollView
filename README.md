@@ -1,3 +1,7 @@
+
+
+【仅供参考与学习，实现滚动图片速度较快时没有断层可以看CollectionViewCycle target的实现，非常简单】
+
 CCCycleScrollView
 
 *iOS Objective-C自定义轮播，无限循环图片播放。*
